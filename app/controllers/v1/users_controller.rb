@@ -5,15 +5,17 @@ class V1::UsersController < ApplicationController
    users=User1.all
    user_details = []
    users.each do |user|
-   	user_details << {id: user.id, name: user.name, username: user.username}
+   	user_details << {id: user.id, name: user.name, username: user.username, email: user.email}
+
    end
 
    render json: user_details, status: :ok 
   end
   def create
-  	user1=User1.new(params.permit(:name,:username,:email,:password,:password_confirmation))
-  	if user1.save
-  		render json: user1, status:  :ok
+  	
+  	user=User1.new(params.permit(:username,:password,:password_confirmation,:name,:email))
+  	if user.save
+  		render json: user, status:  :ok
   	else
       :bad_request 
     end
