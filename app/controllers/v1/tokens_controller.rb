@@ -6,7 +6,7 @@ class  V1::TokensController < ApplicationController
          
       	render json:{
 
-          jwt: encode_token({id: user1.id, username: user1.username})
+          jwt: encode_token({id: user1&.id, username: user1&.username})
       }
 
        else
