@@ -17,7 +17,7 @@ class  V1::TokensController < ApplicationController
 	private
 	 
 		def encode_token(payload)
-			debugger
+			
 			payload ||= {}
 			exp = 24.hours.from_now
 			payload[:exp] = exp.to_i 
