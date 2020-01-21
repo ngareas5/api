@@ -18,6 +18,9 @@ class  V1::TokensController < ApplicationController
 			#payload ||= {}
 			#exp = 24.hours.from_now
 			#payload[:exp] = exp.to_i 
-			JWT.encode(payload, Rails.application.secrets.secret_key_base,'HS256')
+			JWT.encode(payload, auth_secret ,'HS256')
 		end
+		def auth_secret
+      ENV['AUTH_SECRET'] || Rails.application.secrets.secret_key_base.to_s
+    end
 end
