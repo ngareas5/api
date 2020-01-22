@@ -1,5 +1,5 @@
 class V1::UsersController < ApplicationController
-  
+ 
   def index
   	#debugger
    users=User1.all
@@ -15,9 +15,9 @@ class V1::UsersController < ApplicationController
   	
   	user=User1.new(params.permit(:username,:password,:password_confirmation,:name,:email))
   	if user.save
-  		render json: user, status:  :ok
+  		render json: { status: 200, message: 'user created'}
   	else
-      :bad_request 
+      render json: {status: "error",message: user.errors.full_messages.join(',') }
     end
  end
 end
